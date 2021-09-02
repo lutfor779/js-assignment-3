@@ -13,7 +13,7 @@ const getData = () => {
         document.getElementById('search-result').appendChild(div);
     }
     else {
-        const url = `http://openlibrary.org/search.json?q=${search.value}`;
+        const url = `https://openlibrary.org/search.json?q=${search.value}`;
         fetch(url)
             .then(res => res.json())
             .then(data => displayResults(data));
@@ -59,7 +59,8 @@ const displayResults = results => {
                         </div>
                 </div>`;
                 document.getElementById('search-result').appendChild(div);
-                i++
+                document.getElementById('info').style.display = 'block';
+                i++;
             }
         })
     }
@@ -69,7 +70,7 @@ const displayResults = results => {
 // display Items found
 const itemsFound = (items, total) => {
     const div = document.createElement('div');
-    div.classList.add('text-center', 'fs-3', 'text-success', 'border', 'border-danger', 'rounded-3', 'w-25', 'mx-auto');
+    div.classList.add('text-center', 'fs-4', 'text-success', 'border', 'border-danger', 'rounded-3', 'w-25', 'mx-auto');
     div.innerText = `${items} of ${total.numFound} results`;
     document.getElementById('info').appendChild(div);
 }
